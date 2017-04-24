@@ -9,28 +9,27 @@ import java.net.Socket;
 
 public class TCPServer {
 
-	@SuppressWarnings("resource")
-	public static void main(String[] args) throws IOException {
-		String clientSentence;
-		String capitalizedSentence;
-		//´´½¨Á¬½Ó¶Ë¿ÚºÅ
-		ServerSocket welcomeSocket =new ServerSocket(6789);
-		while (true) {
-		//ÔÚwelcomesocket µÈ´ı¿Í»§Á¬½Ó£¬²¢´´½¨connectionsocket
-			Socket connectionSocket =welcomeSocket.accept();
-		//´´½¨ÊäÈëÁ÷´Óconnectionsocket½ÓÊÕĞÅÏ¢
-			BufferedReader inFromClient= new BufferedReader(new InputStreamReader(connectionSocket.getInputStream()));
-		//´´½¨Êä³öÁ÷£¬Í¨¹ıconnectionSocketÊä³ö
-			DataOutputStream outToClient=new DataOutputStream(connectionSocket.getOutputStream());
-		//½ÓÊÕclientµÄĞÅÏ¢
-			clientSentence =inFromClient.readLine();
-		//×ª»»Îª´óĞ´×Ö·û
-			capitalizedSentence=clientSentence.toUpperCase()+'\n';
-		//·¢ËÍĞÅÏ¢	
-			outToClient.writeBytes(capitalizedSentence);
-			
-		}
+    public static void main(String[] args) throws IOException {
+        String clientSentence;
+        String capitalizedSentence;
+        //åˆ›å»ºè¿æ¥ç«¯å£å·
+        ServerSocket welcomeSocket = new ServerSocket(6789);
+        while (true) {
+            //åœ¨welcomesocket ç­‰å¾…å®¢æˆ·è¿æ¥ï¼Œå¹¶åˆ›å»ºconnectionsocket
+            Socket connectionSocket = welcomeSocket.accept();
+            //åˆ›å»ºè¾“å…¥æµä»connectionsocketæ¥æ”¶ä¿¡æ¯
+            BufferedReader inFromClient = new BufferedReader(new InputStreamReader(connectionSocket.getInputStream()));
+            //åˆ›å»ºè¾“å‡ºæµï¼Œé€šè¿‡connectionSocketè¾“å‡º
+            DataOutputStream outToClient = new DataOutputStream(connectionSocket.getOutputStream());
+            //æ¥æ”¶clientçš„ä¿¡æ¯
+            clientSentence = inFromClient.readLine();
+            //è½¬æ¢ä¸ºå¤§å†™å­—ç¬¦
+            capitalizedSentence = clientSentence.toUpperCase() + '\n';
+            //å‘é€ä¿¡æ¯
+            outToClient.writeBytes(capitalizedSentence);
 
-	}
+        }
+
+    }
 
 }

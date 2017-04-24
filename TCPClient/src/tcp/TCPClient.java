@@ -6,36 +6,36 @@ import java.net.*;
 
 public class TCPClient {
 
-	public static void main(String[] args) throws  Exception  {
-		String sentence;
-		String modifiedSentence;
-		
-		//´´½¨ÊäÈëÁ÷£¨¼üÅÌÊäÈë£©
-	
-		BufferedReader inFromUser =new BufferedReader(new InputStreamReader(System.in));
-	
-	
-		//´´½¨clientsocketÁ¬½Ó server
-		 Socket	clientSocket= new Socket(InetAddress.getLocalHost(),6789);
-			
-		//´´½¨Êä³öÁ÷£¨Í¨¹ıclientsocketÊä³ö£©
-		DataOutputStream outToServer=new DataOutputStream(clientSocket.getOutputStream());
-			
-		//´´½¨ÊäÈëÁ÷ ×¼±¸´Óclientsocket½ÓÊÕĞÅÏ¢
-		BufferedReader inFromServer =new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-			
-			//´Ó¼üÅÌ¶ÁÈ¡ĞÅÏ¢
-			System.out .println("´Ó¿Í»§¶ËÊäÈëĞ¡Ğ´×Ö·û:");
-			sentence =inFromUser.readLine();
-			
-			//·¢ËÍĞÅÏ¢µ½server
-			outToServer.writeBytes(sentence+'\n');
-			//´Óserver½ÓÊÕĞÅÏ¢
-			modifiedSentence =inFromServer.readLine();
-			//ÏÔÊ¾
-			System.out.println("´Ó·şÎñÆ÷Êä³ö´óĞ´×Ö·û: "+modifiedSentence);
-	
-		clientSocket.close();
-	}
+    public static void main(String[] args) throws Exception {
+        String sentence;
+        String modifiedSentence;
+
+        //åˆ›å»ºè¾“å…¥æµï¼ˆé”®ç›˜è¾“å…¥ï¼‰
+
+        BufferedReader inFromUser = new BufferedReader(new InputStreamReader(System.in));
+
+
+        //åˆ›å»ºclientsocketè¿æ¥ server
+        Socket clientSocket = new Socket(InetAddress.getLocalHost(), 6789);
+
+        //åˆ›å»ºè¾“å‡ºæµï¼ˆé€šè¿‡clientsocketè¾“å‡ºï¼‰
+        DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
+
+        //åˆ›å»ºè¾“å…¥æµ å‡†å¤‡ä»clientsocketæ¥æ”¶ä¿¡æ¯
+        BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+
+        //ä»é”®ç›˜è¯»å–ä¿¡æ¯
+        System.out.println("ä»å®¢æˆ·ç«¯è¾“å…¥å°å†™å­—ç¬¦:");
+        sentence = inFromUser.readLine();
+
+        //å‘é€ä¿¡æ¯åˆ°server
+        outToServer.writeBytes(sentence + '\n');
+        //ä»serveræ¥æ”¶ä¿¡æ¯
+        modifiedSentence = inFromServer.readLine();
+        //æ˜¾ç¤º
+        System.out.println("ä»æœåŠ¡å™¨è¾“å‡ºå¤§å†™å­—ç¬¦: " + modifiedSentence);
+
+        clientSocket.close();
+    }
 
 }
